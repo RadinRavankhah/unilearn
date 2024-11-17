@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+
+<div class="collapse navbar-collapse" id="collapsibleNavbar">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href= "{% url 'home' %}">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'create-post' %}">Create New Post</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'all-subs' %}">Other Subs</a>
+    </li>    
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'sub-dashboard' id %}">View Dashboard</a>
+      </li>
+  </ul>
+</div> 
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+<style type = "text/css">
+    .border-class
+    {
+      border:thin black solid;
+      margin:20px;
+      padding:20px;
+    }
+    </style>
+
+<h1> {{ sub.name }} </h1>
+
+<h5> {{ sub.description }} </h5>
+
+<div id="container">
+            {% for post in posts %}
+            <div class = "card border-class">
+                <h4 class = "card-title"> {{ post.title }} </h4> 
+                <p class = "card-text"> {{ post.content}} </p>
+                <small> By: {{ post.created_by }} <br> Posted on {{ post.created_on|date:"D d M" }}</small>
+                <p> View comments <a href = "{% url 'get-comments' post.id %}"> here</a></p>     
+            </div>
+
+            {% empty %}
+            <div class = "card border-class">
+              <p class = "card-text"> No posts made on this sub yet. <a href = "{% url 'create-post' %}"> Create one </a> </p>
+            </div>
+
+            {% endfor %}
+            
+</div>
+{% endblock %}
