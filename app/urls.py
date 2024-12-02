@@ -12,6 +12,10 @@ extra_patterns = [
 
 
 urlpatterns = [
+    # path('for-you/',views.for_you,name = 'for-you'),
+
+
+
     path('',views.index,name = 'index'),
     
     #Endpoints for specific sub and post

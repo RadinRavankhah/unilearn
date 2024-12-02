@@ -8,7 +8,7 @@ class UserProfile(models.Model):
     bio = models.CharField(max_length = 200,blank = True)
     #These fields are present in the User model
     #username = models.CharField(max_length = 20, blank = False)
-    #email = models.EmailField()
+    # email = models.EmailField()
     #password = models.CharField(max_length = 20)    
     karma = models.IntegerField(default = 0)
     created_on = models.DateField(auto_now_add = True)
@@ -62,3 +62,15 @@ class Vote(models.Model):
     
     def __str__(self):
         return f'Vote made by {self.user_voted.user.username} on {self.post if not None else self.comment}'
+
+
+
+# class FollowedSubreddit(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followed_subreddits')
+#     subreddit = models.ForeignKey(Sub, on_delete=models.CASCADE, related_name='followers')
+
+#     class Meta:
+#         unique_together = ('user', 'subreddit')
+
+#     def __str__(self):
+#         return f"{self.user.username} follows {self.subreddit.name}"

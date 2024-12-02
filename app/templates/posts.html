@@ -12,10 +12,12 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'all-subs' %}">Other Subs</a>
-    </li>    
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'sub-dashboard' id %}">View Dashboard</a>
-      </li>
+    </li>
+    <!-- Check if the user is following this subreddit -->
+    
+    <!-- <li class="nav-item"> -->
+        <!-- <a class="nav-link" href="{% url 'sub-dashboard' id %}">View Dashboard</a> -->
+      <!-- </li> -->
   </ul>
 </div> 
 
@@ -38,6 +40,8 @@
 <h1> {{ sub.name }} </h1>
 
 <h5> {{ sub.description }} </h5>
+<h5> Created and Moderated by {{ sub.created_by }} </h5>
+
 
 <div id="container">
             {% for post in posts %}

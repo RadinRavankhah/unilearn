@@ -9,7 +9,8 @@ also a UserProfile model object, linking to the user'''
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['username','password','email']
+        # fields = ['username','password','email']
+        fields = ['username','password']
         widgets = {
             'password' : forms.PasswordInput(),
         }
@@ -24,6 +25,7 @@ class UserForm(ModelForm):
 class UserLoginForm(forms.Form):
     username = forms.CharField(label = 'Enter username:')
     password = forms.CharField(widget = forms.PasswordInput())
+    # email = forms.EmailField(label="Enter Email:")
     
 
 class SubForm(ModelForm):
