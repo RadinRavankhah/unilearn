@@ -1,0 +1,43 @@
+<!-- reply_to_comment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reply to Comment</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Reddit Clone</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'subreddit_list' %}">Subreddits</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Reply to Comment</h2>
+
+        <p><strong>Replying to:</strong></p>
+        <p>{{ parent_comment.author }}: {{ parent_comment.content }}</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Reply</button>
+        </form>
+
+        <br>
+        <a href="{% url 'post_detail' post.id %}">Cancel and go back</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Reddit Clone</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}{{ subreddit.name }}{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>{{ subreddit.name }}</h2>
+    <p>{{ subreddit.description }}</p>
+
+    <hr>
+
+    <!-- Button to Create a Post -->
+    {% if user.is_authenticated %}
+      <a href="{% url 'create_post' subreddit.name %}" class="btn btn-primary">Create a Post</a>
+    {% else %}
+      <p><a href="{% url 'login' %}">Log in</a> to create a post.</p>
+    {% endif %}
+
+    <hr>
+
+    <!-- Posts List -->
+    <h3>Posts</h3>
+    {% if posts %}
+      <div class="list-group">
+        {% for post in posts %}
+          <div class="list-group-item">
+            <h5><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h5>
+            <p>{{ post.body|truncatewords:50 }}</p>
+            <p>
+              <small>Posted by <a href="{% url 'user_profile' post.author.username %}">{{ post.author.username }}</a> on {{ post.date_posted }}</small>
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No posts available in this subreddit.</p>
+    {% endif %}
+
+    <hr>
+
+    <!-- Follow/Unfollow Button -->
+    {% if user.is_authenticated %}
+      {% if subreddit in user.subscribed_subreddits.all %}
+        <a href="{% url 'unfollow_subreddit' subreddit.name %}" class="btn btn-danger">Unfollow Subreddit</a>
+      {% else %}
+        <a href="{% url 'follow_subreddit' subreddit.name %}" class="btn btn-success">Follow Subreddit</a>
+      {% endif %}
+    {% else %}
+      <p><a href="{% url 'login' %}">Log in</a> to follow this subreddit.</p>
+    {% endif %}
+  </div>
+{% endblock %}

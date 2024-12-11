@@ -1,0 +1,75 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}{{ post.title }} - Django Reddit{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <!-- Post details -->
+    <div class="row">
+      <div class="col-md-8">
+        <h2>{{ post.title }}</h2>
+        <p><strong>Posted by:</strong> {{ post.author.username }} | <strong>Subreddit:</strong> <a href="{% url 'subreddit_detail' post.subreddit.name %}">{{ post.subreddit.name }}</a> | <strong>Posted on:</strong> {{ post.created_at }}</p>
+
+        <div class="post-body">
+          <p>{{ post.content }}</p>
+        </div>
+
+        <!-- Post upvote and downvote buttons -->
+        <div class="post-votes">
+          <p> {{post.vote_counts}}</p>
+          <a href="{% url 'upvote_post' post.id %}" class="btn btn-success">Upvote</a>
+          <a href="{% url 'downvote_post' post.id %}" class="btn btn-danger">Downvote</a>
+        </div>
+
+        <hr>
+
+        <!-- Comments section -->
+        <h3>Comments</h3>
+        {% for comment in post.comments.all %}
+          <div class="comment mb-3">
+            <p><strong>{{ comment.author.username }}</strong> | {{ comment.created_at }}</p>
+            <p>{{ comment.content }}</p>
+
+            <!-- Comment upvote and downvote buttons -->
+            <p>{{comment.vote_counts}}</p>
+            <div class="comment-votes">
+              <a href="{% url 'upvote_comment' post.id comment.id %}" class="btn btn-success">Upvote</a>
+              <a href="{% url 'downvote_comment' post.id comment.id %}" class="btn btn-danger">Downvote</a>
+            </div>
+
+            <!-- Edit and delete comment buttons (only for the comment author) -->
+            {% if comment.author == request.user %}
+              <a href="{% url 'edit_comment' post.id comment.id %}" class="btn btn-warning">Edit</a>
+              <a href="{% url 'delete_comment' post.id comment.id %}" class="btn btn-danger">Delete</a>
+            {% endif %}
+
+            <!-- Replies to comment -->
+            <!-- {% for reply in comment.replies.all %}
+              <div class="reply mt-3">
+                <p><strong>{{ reply.author.username }}</strong> | {{ reply.created_at }}</p>
+                <p>{{ reply.content }}</p>
+              </div>
+            {% endfor %} -->
+
+            <!-- Reply to comment button -->
+            <!-- <a href="{% url 'reply_to_comment' post.id comment.id %}" class="btn btn-info">Reply</a> -->
+          </div>
+        {% empty %}
+          <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+
+        <hr>
+
+        <!-- Add a new comment form -->
+        <h4>Add a Comment</h4>
+        <form method="post" action="{% url 'add_comment' post.id %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <textarea name="content" class="form-control" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+<!-- main/templates/main/edit_comment.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Edit Comment</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save changes</button>
+    </form>
+
+    <a href="{% url 'post_detail' post_id=comment.parent_post.id %}">Back to Post</a>
+{% endblock %}

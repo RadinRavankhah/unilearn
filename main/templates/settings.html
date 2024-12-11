@@ -1,0 +1,47 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Account Settings{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>Account Settings</h2>
+    
+    <!-- User Profile Settings Form -->
+    <div class="mb-4">
+      <h3>Profile Information</h3>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </form>
+    </div>
+
+    <hr>
+
+    <!-- Password Change Form -->
+    <div class="mb-4">
+      <h3>Change Password</h3>
+      <form method="POST" action="{% url 'password_change' %}">
+        {% csrf_token %}
+        {{ password_form.as_p }}
+
+        <button type="submit" class="btn btn-danger">Change Password</button>
+      </form>
+    </div>
+
+    <hr>
+
+    <!-- User Preferences Form -->
+    <div class="mb-4">
+      <h3>User Preferences</h3>
+      <form method="POST">
+        {% csrf_token %}
+        {{ preferences_form.as_p }}
+
+        <button type="submit" class="btn btn-secondary">Save Preferences</button>
+      </form>
+    </div>
+    
+  </div>
+{% endblock %}

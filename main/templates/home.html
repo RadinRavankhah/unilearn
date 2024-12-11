@@ -1,0 +1,74 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit Clone - Home</title>
+
+    <!-- Load the static files -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Reddit Clone</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'user_profile' username=user.username %}">Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    {% if user.is_authenticated %}
+        <h2>Your Followed Subreddits</h2>
+    {% else %}
+        <h2>Top Subreddits</h2>
+    {% endif %}
+
+    {% for entry in subreddit_posts %}
+        <div class="subreddit-section">
+            <!-- Subreddit Name Links to Subreddit Page -->
+            <h3>
+                <a href="{% url 'subreddit_detail' entry.subreddit.name %}">
+                    {{ entry.subreddit.name }}
+                </a>
+            </h3>
+            <p>{{ entry.subreddit.description }}</p>
+
+            <h4>Recent Posts:</h4>
+            <ul>
+                {% for post in entry.posts %}
+                    <li>
+                        <!-- Post Title Links to Post Page -->
+                        <strong>
+                            <a href="{% url 'post_detail' post.id %}">
+                                {{ post.title }}
+                            </a>
+                        </strong>
+                        <br>
+                        <!-- Truncated Post Content -->
+                        {{ post.content|truncatechars:200 }}
+                        {% if post.content|length > 200 %}
+                            <a href="{% url 'post_detail' post.id %}">Read more</a>
+                        {% endif %}
+                        <br>
+                        <small>
+                            Posted by {{ post.author.username }} on {{ post.created_at|date:"M d, Y H:i" }}
+                        </small>
+                    </li>
+                {% empty %}
+                    <li>No recent posts available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</body>
+</html>
