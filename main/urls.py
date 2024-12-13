@@ -27,6 +27,8 @@ urlpatterns = [
     path('posts/<int:post_id>/delete/', views.delete_post, name='delete_post'),
     path('posts/<int:post_id>/upvote/', views.upvote_post, name='upvote_post'),
     path('posts/<int:post_id>/downvote/', views.downvote_post, name='downvote_post'),
+    path('posts/<int:post_id>/upvote_from_community/', views.upvote_post_from_community, name='upvote_post_from_community'),
+    path('posts/<int:post_id>/downvote_from_community/', views.downvote_post_from_community, name='downvote_post_from_community'),
 
     # Comments
     path('posts/<int:post_id>/comments/new/', views.add_comment, name='add_comment'),

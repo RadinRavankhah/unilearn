@@ -129,12 +129,20 @@ def edit_subreddit(request, subreddit_name):
 def subreddit_detail(request, subreddit_name):
     subreddit = get_object_or_404(Subreddit, name=subreddit_name)
     posts = Post.objects.filter(subreddit=subreddit).order_by('-created_at')
-    return render(request, 'templates/subreddit_detail.html', {'subreddit': subreddit, 'posts': posts})
+    return render(request, 'templates/community-page.html', {'subreddit': subreddit, 'posts': posts})
+    # return render(request, 'templates/subreddit_detail_old.html', {'subreddit': subreddit, 'posts': posts})
 
 @login_required
 def follow_subreddit(request, subreddit_name):
     subreddit = get_object_or_404(Subreddit, name=subreddit_name)
-    request.user.followed_subreddits.add(subreddit)
+    
+    if subreddit in request.user.followed_subreddits.all():
+        # Unfollow the subreddit if the user is already following it
+        request.user.followed_subreddits.remove(subreddit)
+    else:
+        # Follow the subreddit if not already followed
+        request.user.followed_subreddits.add(subreddit)
+    
     return redirect('subreddit_detail', subreddit_name=subreddit_name)
 
 @login_required
@@ -201,13 +209,6 @@ def post_detail(request, post_id):
     comments = Comment.objects.filter(parent_post=post).order_by('-created_at')
     return render(request, 'templates/post_detail.html', {'post': post, 'comments': comments})
 
-@login_required
-def upvote_post(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    post.upvotes.add(request.user)
-    post.downvotes.remove(request.user)
-    return JsonResponse({'status': 'success', 'upvotes': post.upvotes.count()})
-
 
 @login_required
 def upvote_post(request, post_id):
@@ -222,6 +223,20 @@ def downvote_post(request, post_id):
     post.toggle_downvote(request.user)
     # return JsonResponse({'status': 'success', 'upvotes': post.upvote_count(), 'downvotes': post.downvote_count(), 'vote_counts':post.vote_counts})
     return redirect('post_detail', post_id=post_id)
+
+@login_required
+def upvote_post_from_community(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    post.toggle_upvote(request.user)
+    # return JsonResponse({'status': 'success', 'upvotes': post.upvote_count(), 'downvotes': post.downvote_count(), 'vote_counts':post.vote_counts})
+    return redirect('subreddit_detail', subreddit_name=post.subreddit.name)
+
+@login_required
+def downvote_post_from_community(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    post.toggle_downvote(request.user)
+    # return JsonResponse({'status': 'success', 'upvotes': post.upvote_count(), 'downvotes': post.downvote_count(), 'vote_counts':post.vote_counts})
+    return redirect('subreddit_detail', subreddit_name=post.subreddit.name)
 
 # Comments
 @login_required

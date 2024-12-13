@@ -40,13 +40,13 @@
 
     <!-- Follow/Unfollow Button -->
     {% if user.is_authenticated %}
-      {% if subreddit in user.subscribed_subreddits.all %}
-        <a href="{% url 'unfollow_subreddit' subreddit.name %}" class="btn btn-danger">Unfollow Subreddit</a>
-      {% else %}
-        <a href="{% url 'follow_subreddit' subreddit.name %}" class="btn btn-success">Follow Subreddit</a>
-      {% endif %}
+    {% if subreddit in user.followed_subreddits.all %}
+      <a href="{% url 'follow_subreddit' subreddit.name %}" class="btn btn-danger">Unfollow Subreddit</a>
     {% else %}
-      <p><a href="{% url 'login' %}">Log in</a> to follow this subreddit.</p>
+      <a href="{% url 'follow_subreddit' subreddit.name %}" class="btn btn-success">Follow Subreddit</a>
+    {% endif %}
+    {% else %}
+    <p><a href="{% url 'login' %}">Log in</a> to follow this subreddit.</p>
     {% endif %}
   </div>
 {% endblock %}

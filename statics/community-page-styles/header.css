@@ -1,0 +1,135 @@
+.body{
+    padding-bottom: 300px;
+    background-color: rgb(233, 236, 245);
+}
+
+.page{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgb(233, 236, 245);
+    
+}
+
+.pageHeader {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    
+
+}
+
+.title{
+    font-family: Arial;
+}
+
+.logo-section{  
+   max-width: 20%;
+}
+
+.logo-img{
+    position:absolute;
+    left: 3%;
+    top: 8%;
+    width: 120px; 
+    min-height: fit-content;
+    
+}
+
+
+.top-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background-color: rgb(233, 236, 245);
+
+}
+
+.site-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.color-bar {
+    margin: 0;
+    padding-top: 0px;
+    background-color: rgb(91, 69, 255);
+    height: 50px;
+}
+
+.titleOfSite {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(213,218,255);
+    object-fit: contain;
+    min-height: 60px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
+
+.def{
+    font-family: Arial;
+    font-size: max(x-small,small);
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 22%;
+    margin-right: 10px;
+    padding-right: 0;
+}
+
+
+.search-bar {
+    height: 20px;
+    width: 60%;
+
+}
+
+.join , .sign-up {
+
+    font-size: small;
+    border-radius: 5%;
+    background-color: rgb(56,41,164);
+    color: white;
+    font-weight: 700;
+}
+
+.log-in,.create-post {
+    font-size: small;
+    border-radius: 5%;
+    background-color: white;
+    color: rgb(56,41,164);
+    font-weight: 700;
+
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-right: 2%;
+}
+
+.unilearn{
+    height: 50px;
+    
+}
+
+.grat-hat{
+    height: 30px;
+}
+
+.header-design{
+    display: flex;
+    flex-direction: column;
+
+}
+
