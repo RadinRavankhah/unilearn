@@ -3,70 +3,169 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-  <div class="container mt-4">
-    <h2>Sign Up</h2>
+<div class="container" style="margin-bottom: 50px;">
+    <div class="signup">Sign Up</div>
 
     <!-- Sign Up Form -->
-    <form method="POST">
-      {% csrf_token %}
-      
-      <!-- Username Field -->
-      <div class="mb-3">
-        <label for="id_username" class="form-label">Username</label>
-        {{ form.username }}
-        {% if form.username.errors %}
-          <div class="text-danger">
-            {% for error in form.username.errors %}
-              <p>{{ error }}</p>
-            {% endfor %}
-          </div>
-        {% endif %}
-      </div>
+    <form method="POST" class="form">
+        {% csrf_token %}
+        
+        <!-- Username Field -->
+        <div class="mb-3">
+            <label for="id_username" class="form-label">Username</label>
+            <br>
+            <div>{{ form.username }}</div>
+            {% if form.username.errors %}
+                <div class="text-danger">
+                    {% for error in form.username.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
 
-      <!-- Email Field -->
-      <div class="mb-3">
-        <label for="id_email" class="form-label">Email</label>
-        {{ form.email }}
-        {% if form.email.errors %}
-          <div class="text-danger">
-            {% for error in form.email.errors %}
-              <p>{{ error }}</p>
-            {% endfor %}
-          </div>
-        {% endif %}
-      </div>
+        <!-- Email Field -->
+        <div class="mb-3">
+            <label for="id_email" class="form-label">Email</label>
+            <br>
+            {{ form.email }}
+            {% if form.email.errors %}
+                <div class="text-danger">
+                    {% for error in form.email.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
 
-      <!-- Password Field -->
-      <div class="mb-3">
-        <label for="id_password1" class="form-label">Password</label>
-        {{ form.password1 }}
-        {% if form.password1.errors %}
-          <div class="text-danger">
-            {% for error in form.password1.errors %}
-              <p>{{ error }}</p>
-            {% endfor %}
-          </div>
-        {% endif %}
-      </div>
+        <!-- Password Field -->
+        <div class="mb-3">
+            <label for="id_password1" class="form-label">Password</label>
+            <br>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+                <div class="text-danger">
+                    {% for error in form.password1.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
 
-      <!-- Password Confirmation Field -->
-      <div class="mb-3">
-        <label for="id_password2" class="form-label">Confirm Password</label>
-        {{ form.password2 }}
-        {% if form.password2.errors %}
-          <div class="text-danger">
-            {% for error in form.password2.errors %}
-              <p>{{ error }}</p>
-            {% endfor %}
-          </div>
-        {% endif %}
-      </div>
+        <!-- Password Confirmation Field -->
+        <div class="mb-3">
+            <label for="id_password2" class="form-label">Confirm Password</label>
+            <br>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+                <div class="text-danger">
+                    {% for error in form.password2.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
 
-      <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary">Create Account</button>
+        <!-- Submit Button -->
+        <button type="submit" class="button3">Create Account</button>
     </form>
 
-    <hr>
-    <p>Already have an account? <a href="{% url 'login' %}">Log in here</a>.</p>
-  </div>
+    <!-- Redirect to Login -->
+    <div class="text">
+        Already have an account? 
+        <a href="{% url 'login' %}" class="text2" style="margin-bottom: 50px;">Log in here.</a>
+    </div>
+</div>
+
+<style>
+    /* Existing styles from the frontend team */
+    body {
+        font-family: Arial;
+    }
+    .form{
+        width: 40%;
+    }
+    .form-label{
+        display: block;
+        margin-bottom: -15px;
+        margin-top: 20px;
+    }
+    /* .button1{
+        background-color: white;
+        width:  380px;
+        height: 50px;
+        border-radius: 10px;
+        color: rgb(125, 126, 127);
+        font-size: 18px;
+        border-color: rgb(56, 41, 164);
+        border-width: 2.7px;
+    } */
+    input{
+        width: 100%;
+        background-color: white;
+        height: 50px;
+        border-radius: 10px;
+        color: rgb(125, 126, 127);
+        font-size: 18px;
+        border-color: rgb(56, 41, 164);
+        border-width: 2.7px;
+    }
+    .button3 {
+        background-color: rgb(56, 41, 164);
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+        color: white;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+    .container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* height: 86vh; */
+    }
+    .signup {
+        width: 40%;
+        color: #4937D2;
+        padding-top: 40px;
+        font-size: 60px;
+        font-weight: bold;
+        margin-bottom: 3%;
+    }
+    .text {
+        margin-top: 3%;
+        font-size: 19.5px;
+        color: rgb(56, 41, 164);
+    }
+    .text2 {
+        font-size: 17px;
+        color: rgb(56, 41, 164);
+        padding-right: 140px;
+    }
+    .mb-3 {
+        width: 100%;
+        margin-bottom: 3%;
+    }
+    @media screen and (max-width: 400px) {
+        .form {
+            width: 80%;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
+        }
+        .signup {
+            font-size: x-large;
+            width: 80%;
+            margin-bottom: 15%;
+        }
+        .button3 {
+            width: 95%;
+            font-size: x-small;
+        }
+        .text, .text2 {
+            font-size: small;
+        }
+    }
+</style>
 {% endblock %}

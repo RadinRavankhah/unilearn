@@ -7,8 +7,11 @@ urlpatterns = [
 
     # User management
     path('signup/', views.signup, name='signup'),
+    path('accounts/signup/', views.signup, name='accounts_signup'),
     path('login/', views.login_view, name='login'),
+    path('accounts/login/', views.login_view, name='accounts_login'),
     path('logout/', views.logout_view, name='logout'),
+    path('accounts/logout/', views.logout_view, name='accounts_logout'),
     path('user/<str:username>/', views.user_profile, name='user_profile'),
     path('user/<str:username>/edit/', views.edit_profile, name='edit_profile'),
 

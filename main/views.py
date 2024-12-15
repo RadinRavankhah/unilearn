@@ -49,6 +49,22 @@ def signup(request):
         form = SignupForm()
     return render(request, 'templates/signup.html', {'form': form})
 
+# def login_view(request):
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password']
+#             user = authenticate(request, username=username, password=password)
+#             if user:
+#                 login(request, user)
+#                 return redirect('home')
+#     else:
+#         form = LoginForm()
+#     return render(request, 'templates/login.html', {'form': form})
+
+
+
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -58,10 +74,15 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-                return redirect('home')
+                return redirect('home')  # Adjust 'home' to your actual redirect target
+            else:
+                return render(request, 'login.html', {
+                    'form': form,
+                    'error': 'Invalid username or password',
+                })
     else:
         form = LoginForm()
-    return render(request, 'templates/login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
 @login_required
 def logout_view(request):
