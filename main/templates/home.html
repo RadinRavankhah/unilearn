@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reddit Clone - Home</title>
+    <title>Unilearn - Home</title>
 
     <!-- Load the static files -->
     {% load static %}
@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <h1>Reddit Clone</h1>
+        <h1>Unilearn</h1>
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
@@ -28,9 +28,9 @@
     </header>
 
     {% if user.is_authenticated %}
-        <h2>Your Followed Subreddits</h2>
+        <h2>Your Followed Communities</h2>
     {% else %}
-        <h2>Top Subreddits</h2>
+        <h2>Top Communities</h2>
     {% endif %}
 
     {% for entry in subreddit_posts %}

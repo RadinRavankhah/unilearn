@@ -38,17 +38,6 @@ def home(request):
 
 
 # User Management
-# def signup(request):
-#     if request.method == 'POST':
-#         form = SignupForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect('home')
-#     else:
-#         form = SignupForm()
-#     return render(request, 'templates/signup.html', {'form': form})
-
 def signup(request):
     next_url = request.GET.get('next') or request.POST.get('next', 'home')  # Handle both GET and POST
     if request.method == 'POST':
@@ -60,22 +49,6 @@ def signup(request):
     else:
         form = SignupForm()
     return render(request, 'templates/signup.html', {'form': form})
-
-
-
-# def login_view(request):
-#     if request.method == 'POST':
-#         form = LoginForm(request.POST)
-#         if form.is_valid():
-#             username = form.cleaned_data['username']
-#             password = form.cleaned_data['password']
-#             user = authenticate(request, username=username, password=password)
-#             if user:
-#                 login(request, user)
-#                 return redirect('home')
-#     else:
-#         form = LoginForm()
-#     return render(request, 'templates/login.html', {'form': form})
 
 
 
@@ -99,8 +72,6 @@ def login_view(request):
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form}) 
-
-
 
 
 @login_required

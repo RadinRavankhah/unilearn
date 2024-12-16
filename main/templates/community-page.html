@@ -435,7 +435,7 @@
                     <div class="buttons">
                         {% if user.is_authenticated %}
                             {% if subreddit in user.followed_subreddits.all %}
-                            <a href="{% url 'follow_subreddit' subreddit.name %}"><button class="join">Unfollow Subreddit</button></a>
+                            <a href="{% url 'follow_subreddit' subreddit.name %}"><button class="join">Unfollow Community</button></a>
                             {% else %}
                             <a href="{% url 'follow_subreddit' subreddit.name %}"><button class="join">Join</button></a>
                             {% endif %}
@@ -522,7 +522,8 @@
                         </a>
                         <a href="{% url 'post_detail' post.id %}" style="text-decoration: none; color: black;">
                             <h4 class="detailOfContent" style="font-size: large;">
-                            {{ post.content|truncatewords:50 }}
+                            <!-- {{ post.content|truncatewords:50 }} -->
+                            {{ post.content}}
                             </h4>
                         </a>
                         </div>
