@@ -112,6 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
+# TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -124,15 +125,15 @@ USE_TZ = True
 import os
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
-STATICFILES_DIRS = [BASE_DIR / "static"]  # Adjust if necessary
+STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = [BASE_DIR / "statics"]  # Adjust if necessary
 
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
-STATICFILES_DIRS = [
-    BASE_DIR/"statics",
-]   
+# STATICFILES_DIRS = [
+#     BASE_DIR/"static",
+# ]   
 
 
 

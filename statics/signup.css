@@ -1,0 +1,83 @@
+body {
+    font-family: Arial;
+}
+.form{
+    width: 40%;
+}
+.form-label{
+    display: block;
+    margin-bottom: -20px;
+    margin-top: 20px;
+}
+input{
+    width: 100%;
+    background-color: white;
+    height: 50px;
+    border-radius: 10px;
+    color: rgb(125, 126, 127);
+    font-size: 18px;
+    border-color: rgb(56, 41, 164);
+    border-width: 2.7px;
+}
+.button3 {
+    background-color: rgb(56, 41, 164);
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+}
+.container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* height: 86vh; */
+}
+.signup {
+    width: 40%;
+    color: #4937D2;
+    /* padding-top: 40px; */
+    padding-top: 0px;
+    font-size: 50px;
+    font-weight: bold;
+    /* margin-bottom: 3%; */
+    margin-bottom: 0px;
+
+}
+.text {
+    margin-top: 3%;
+    font-size: 19.5px;
+    color: rgb(56, 41, 164);
+}
+.text2 {
+    font-size: 17px;
+    color: rgb(56, 41, 164);
+    padding-right: 140px;
+}
+.mb-3 {
+    width: 100%;
+    margin-bottom: 3%;
+}
+@media screen and (max-width: 400px) {
+    .form {
+        width: 80%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+    .signup {
+        font-size: xx-large;
+        width: 80%;
+        margin-bottom: 3%;
+    }
+    .button3 {
+        width: 95%;
+        font-size: 1rem;
+    }
+    .text, .text2 {
+        width: 100%;
+        font-size: 1rem;
+    }
+}

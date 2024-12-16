@@ -140,8 +140,7 @@ def edit_subreddit(request, subreddit_name):
 def subreddit_detail(request, subreddit_name):
     subreddit = get_object_or_404(Subreddit, name=subreddit_name)
     posts = Post.objects.filter(subreddit=subreddit).order_by('-created_at')
-    return render(request, 'templates/community-page.html', {'subreddit': subreddit, 'posts': posts})
-    # return render(request, 'templates/subreddit_detail_old.html', {'subreddit': subreddit, 'posts': posts})
+    return render(request, 'templates/community_page.html', {'subreddit': subreddit, 'posts': posts})
 
 @login_required
 def follow_subreddit(request, subreddit_name):

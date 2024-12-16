@@ -1,0 +1,359 @@
+body {
+    margin:0;
+    background-color: rgb(233, 236, 245);
+    font-family: Arial;
+}
+
+.moderators , .aboutCommunity{
+    
+    background-color: rgb(255, 255, 255);;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    border-radius: 5px;
+}
+
+.top-bar{
+    margin: 0;
+    background-color: rgb(56, 41, 164)
+}
+
+
+.title-of-details{
+    margin-left: 10px;
+    color: rgb(255, 255, 255);
+}
+
+.users{
+    margin: 10px;
+    color: rgb(73,55,210);
+}
+
+.com-detail{
+    margin-left: 10px;
+}
+
+.view{
+    padding-left: 2%;
+    color:rgb(56, 41, 164)
+}
+
+.date-creation{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.members-detail{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.body{
+    padding-bottom: 300px;
+    background-color: rgb(233, 236, 245);
+}
+
+.page{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgb(233, 236, 245);
+    
+}
+
+.pageHeader {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    
+
+}
+
+.logo-img{
+    max-width: 120px;   
+    margin-right: 2%;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 100%;
+}
+
+
+.top-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background-color: rgb(233, 236, 245);
+
+}
+
+.site-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 1% ;
+
+    padding-top: 1%;
+    margin-bottom: 1%;
+    
+}
+.unilearn{
+    margin-top: 2%;
+
+}
+
+.color-bar {
+    margin: 0;
+    padding-top: 0px;
+    background-color: rgb(91, 69, 255);
+    height: 50px;
+}
+
+.titleOfSite {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(213,218,255);
+    object-fit: contain;
+    min-height: 60px;
+    border-style: none;
+    
+}
+
+.def{
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+    padding-right: 0;
+    font-size: xx-large;
+}
+
+
+.search-bar {
+    height: 20px;
+    width: 60%;
+
+}
+
+.join , .sign-up {
+
+    font-size: small;
+    border-radius: 5px;
+    background-color: rgb(56,41,164);
+    color: white;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.log-in,.create-post {
+    font-size: small;
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(56,41,164);
+    font-weight: 700;
+    padding: 10px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-right: 2%;
+}
+
+
+
+.grat-hat{
+    height: 30px;
+}
+
+.header-design{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.general {
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: start;
+    gap: 20px;
+    padding-top: 0;
+    
+
+}
+
+.news,.details {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    border-radius: 5px;
+}
+
+.pinned, .header, .aboutCommunity, .moderators {
+    background-color: white;
+    border-radius: 5px;
+
+}
+
+
+.news {
+    width:60%;
+}
+
+.details {
+    width: 20%;
+}
+
+.header {
+    height: 40px;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+}
+
+.pinned {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex: 2;
+    background-color: rgb(255, 255, 255);
+
+}
+
+.posts {
+    /* background-color: rgb(255, 255, 255); */
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 3;
+}
+.post{
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+}
+.texts {
+    flex: 15;
+}
+
+.side-bar {
+    flex: 1;
+    background-color: rgb(238, 240, 245);
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    padding-top: 20px;
+}
+
+
+.info{
+    font-size: small;
+    font-weight: 600;
+    color: grey;
+}
+
+.options{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.share-comment-save{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.showcontent{
+    display: none;
+    border-radius: 5px;
+}
+
+@media screen and (max-width:600px) {
+
+    .color-bar{
+        height: 25px;
+
+    }
+    .titleOfSite {
+        display: flex;
+        flex-direction: column;
+        
+        align-items: center;
+    }
+    .buttons{
+    margin-bottom: 10px; 
+    margin-top: 10px;
+    }
+    .font{
+    font-size: small; 
+    font-weight: bold;
+    }
+    .log-in, .sign-up , .join , .create-post{
+        padding: 5px;
+    }
+    .logo-img{
+        display:none;
+
+    }
+    .def{
+        margin-top: 10px;
+        margin-left: 4%;
+    }
+    .site-name{
+        width: 100%;
+    }
+    .grat-hat{
+        width: 30px;
+        height: 30px;
+        font-weight: bold;
+    }
+    .unilearn{
+        width: 100px;
+        height: 40px;
+    }
+    .person-icon{
+        width: 20px;
+        height: 20px;
+    }
+    .details{
+        display: none;
+
+    }
+    .showcontent{
+        display: block;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .general{
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .news{
+        width: 90%;
+        margin-left: 2.5%;
+        margin-right:2.5% ;
+    }
+    .btn-main :hover {
+        border: none;
+        border: 5px solid rgb(213,218,255);
+    }
+    .post{
+        display: flex;
+        flex-direction: row;
+    }
+
+}

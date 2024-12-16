@@ -1,0 +1,65 @@
+body{
+    margin: 0px;
+    font-family: Arial;
+}
+.unilearn{
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;
+    margin-left: 1% ;
+    padding-top: 0.5%;
+    margin-bottom: 1%;
+
+}
+.content{
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login{
+    color: #4937D2;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.emailinput , .passwordinput{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    
+    margin-bottom: 5%;
+}
+.pass{
+    display: flex;
+    flex-direction: row;
+}
+
+.forgotPass{
+    margin-top: 0;
+}
+
+.emailBTN , .passBTN{
+    background-color: white;
+    border-radius: 10px;
+    
+   
+    border-color: rgb(56, 41, 164);
+    
+}
+
+.loginBTN{
+    background-color: rgb(56, 41, 164);
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+
+}
