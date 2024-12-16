@@ -43,6 +43,15 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'titleOfPost', 'placeholder': 'Enter post title'}),
+            'content': forms.Textarea(attrs={'class': 'contentOfPost', 'placeholder': 'Enter post content'}),
+        }
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.label = ''  # Remove label
 
 # Comment Creation Form
 class CommentForm(forms.ModelForm):

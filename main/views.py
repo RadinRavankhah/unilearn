@@ -38,16 +38,30 @@ def home(request):
 
 
 # User Management
+# def signup(request):
+#     if request.method == 'POST':
+#         form = SignupForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             login(request, user)
+#             return redirect('home')
+#     else:
+#         form = SignupForm()
+#     return render(request, 'templates/signup.html', {'form': form})
+
 def signup(request):
+    next_url = request.GET.get('next') or request.POST.get('next', 'home')  # Handle both GET and POST
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            return redirect('home')
+            login(request, user)  # Log the user in after signup
+            return redirect(next_url)  # Redirect to the URL in 'next' or 'home'
     else:
         form = SignupForm()
     return render(request, 'templates/signup.html', {'form': form})
+
+
 
 # def login_view(request):
 #     if request.method == 'POST':
@@ -66,6 +80,8 @@ def signup(request):
 
 
 def login_view(request):
+    next_url = request.GET.get('next') or request.POST.get('next') or 'home'
+    # next_url = request.GET.get('next') or request.POST.get('next', 'home')  # Handle both GET and POST
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -74,7 +90,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-                return redirect('home')  # Adjust 'home' to your actual redirect target
+                return redirect(next_url)  # Redirect to the URL in 'next' or 'home'
             else:
                 return render(request, 'login.html', {
                     'form': form,
@@ -82,7 +98,10 @@ def login_view(request):
                 })
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login.html', {'form': form}) 
+
+
+
 
 @login_required
 def logout_view(request):

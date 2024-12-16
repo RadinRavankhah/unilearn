@@ -1,171 +1,176 @@
-{% extends 'base_generic.html' %}
-
-{% block title %}Sign Up{% endblock %}
-
-{% block content %}
-<div class="container" style="margin-bottom: 50px;">
-    <div class="signup">Sign Up</div>
-
-    <!-- Sign Up Form -->
-    <form method="POST" class="form">
-        {% csrf_token %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            /* Existing styles from the frontend team */
+            body {
+                font-family: Arial;
+            }
+            .form{
+                width: 40%;
+            }
+            .form-label{
+                display: block;
+                margin-bottom: -20px;
+                margin-top: 20px;
+            }
+            input{
+                width: 100%;
+                background-color: white;
+                height: 50px;
+                border-radius: 10px;
+                color: rgb(125, 126, 127);
+                font-size: 18px;
+                border-color: rgb(56, 41, 164);
+                border-width: 2.7px;
+            }
+            .button3 {
+                background-color: rgb(56, 41, 164);
+                width: 100%;
+                height: 50px;
+                border-radius: 10px;
+                color: white;
+                font-size: 18px;
+                margin-top: 20px;
+            }
+            .container {
+                margin-top: 20px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                /* height: 86vh; */
+            }
+            .signup {
+                width: 40%;
+                color: #4937D2;
+                /* padding-top: 40px; */
+                padding-top: 0px;
+                font-size: 50px;
+                font-weight: bold;
+                /* margin-bottom: 3%; */
+                margin-bottom: 0px;
         
-        <!-- Username Field -->
-        <div class="mb-3">
-            <label for="id_username" class="form-label">Username</label>
-            <br>
-            <div>{{ form.username }}</div>
-            {% if form.username.errors %}
-                <div class="text-danger">
-                    {% for error in form.username.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
+            }
+            .text {
+                margin-top: 3%;
+                font-size: 19.5px;
+                color: rgb(56, 41, 164);
+            }
+            .text2 {
+                font-size: 17px;
+                color: rgb(56, 41, 164);
+                padding-right: 140px;
+            }
+            .mb-3 {
+                width: 100%;
+                margin-bottom: 3%;
+            }
+            @media screen and (max-width: 400px) {
+                .form {
+                    width: 80%;
+                    margin-left: 2.5%;
+                    margin-right: 2.5%;
+                }
+                .signup {
+                    font-size: xx-large;
+                    width: 80%;
+                    margin-bottom: 3%;
+                }
+                .button3 {
+                    width: 95%;
+                    font-size: 1rem;
+                }
+                .text, .text2 {
+                    width: 100%;
+                    font-size: 1rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="title" style="margin-left: 10px; margin-top: 10px;">
+            <a href="{% url 'home' %}">  
+              <svg class="icon" width="139" height="50" viewBox="0 0 217 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.94216 50.1795C8.50135 49.9059 8.14716 49.532 7.87957 49.0574C7.61197 48.5833 7.47816 48.0513 7.47816 47.4615V37L2.75561 34.1795C2.50374 34.0085 2.31483 33.8115 2.1889 33.5882C2.06297 33.3653 2 33.1174 2 32.8446C2 32.5721 2.06297 32.3248 2.1889 32.1026C2.31483 31.8803 2.50374 31.6838 2.75561 31.5128L19.804 21.359C20.0244 21.2222 20.2481 21.1282 20.4751 21.0769C20.7018 21.0256 20.9346 21 21.1736 21C21.4125 21 21.6453 21.0256 21.872 21.0769C22.099 21.1282 22.3227 21.2222 22.5431 21.359L41.2444 32.3846C41.4963 32.5556 41.6852 32.7602 41.8111 32.9985C41.937 33.2364 42 33.4933 42 33.7692V47.5641C42 48 41.8633 48.3653 41.5901 48.66C41.3171 48.9551 40.9787 49.1026 40.5747 49.1026C40.1711 49.1026 39.8355 48.9551 39.5679 48.66C39.3003 48.3653 39.1665 48 39.1665 47.5641V34.641L34.8689 37V47.4615C34.8689 48.0513 34.7351 48.5833 34.4675 49.0574C34.2 49.532 33.8458 49.9059 33.405 50.1795L22.5431 56.641C22.3227 56.7777 22.099 56.8718 21.872 56.9231C21.6453 56.9744 21.4125 57 21.1736 57C20.9346 57 20.7018 56.9744 20.4751 56.9231C20.2481 56.8718 20.0244 56.7777 19.804 56.641L8.94216 50.1795ZM21.1736 41.6667L36.0496 32.8462L21.1736 24.1795L6.39197 32.8462L21.1736 41.6667ZM21.1736 53.9744L32.0354 47.4615V38.8462L22.5431 44.3846C22.3227 44.5213 22.1023 44.6154 21.8819 44.6667C21.6616 44.7179 21.4255 44.7436 21.1736 44.7436C20.9217 44.7436 20.6935 44.7179 20.4888 44.6667C20.2841 44.6154 20.0716 44.5213 19.8512 44.3846L10.3117 38.7436V47.4615L21.1736 53.9744Z" fill="#3829A4"></path>
+                <path d="M57.6172 41.4844V30.6641C57.6172 29.8828 58.0078 29.4922 58.7891 29.4922H61.9141C62.6953 29.4922 63.0859 29.8828 63.0859 30.6641V40.0781C63.0859 42.9167 63.2812 44.707 63.6719 45.4492C64.0625 46.1914 64.8828 46.5625 66.1328 46.5625C67.4609 46.5625 68.4701 46.0352 69.1602 44.9805C69.8503 43.9128 70.1953 41.7057 70.1953 38.3594V30.6641C70.1953 29.8828 70.5859 29.4922 71.3672 29.4922H74.4922C75.2734 29.4922 75.6641 29.8828 75.6641 30.6641V48.8281C75.6641 49.6094 75.2734 50 74.4922 50H71.4062C70.625 50 70.2344 49.6094 70.2344 48.8281V47.6953H70.1562C69.5573 48.724 68.7956 49.4336 67.8711 49.8242C66.9466 50.2018 65.8529 50.3906 64.5898 50.3906C62.5977 50.3906 60.9375 49.7526 59.6094 48.4766C58.2812 47.2005 57.6172 44.8698 57.6172 41.4844ZM82.1484 50C81.3672 50 80.9766 49.6094 80.9766 48.8281V30.6641C80.9766 29.8828 81.3672 29.4922 82.1484 29.4922H85.2344C86.0156 29.4922 86.4062 29.8828 86.4062 30.6641V31.7969H86.4844C87.0833 30.7682 87.8451 30.0651 88.7695 29.6875C89.694 29.2969 90.8073 29.1016 92.1094 29.1016C94.1406 29.1016 95.8203 29.7396 97.1484 31.0156C98.4766 32.2917 99.1406 34.6224 99.1406 38.0078V48.8281C99.1406 49.6094 98.75 50 97.9688 50H94.8438C94.0625 50 93.6719 49.6094 93.6719 48.8281V39.4141C93.6719 36.5755 93.4766 34.7852 93.0859 34.043C92.6953 33.3008 91.8555 32.9297 90.5664 32.9297C89.1992 32.9297 88.1706 33.4635 87.4805 34.5312C86.7904 35.5859 86.4453 37.7865 86.4453 41.1328V48.8281C86.4453 49.6094 86.0547 50 85.2734 50H82.1484ZM105.586 50C104.805 50 104.414 49.6094 104.414 48.8281V30.6641C104.414 29.8828 104.805 29.4922 105.586 29.4922H108.711C109.492 29.4922 109.883 29.8828 109.883 30.6641V48.8281C109.883 49.6094 109.492 50 108.711 50H105.586ZM105.586 26.4844C104.805 26.4844 104.414 26.0938 104.414 25.3125V22.8125C104.414 22.0312 104.805 21.6406 105.586 21.6406H108.711C109.492 21.6406 109.883 22.0312 109.883 22.8125V25.3125C109.883 26.0938 109.492 26.4844 108.711 26.4844H105.586ZM116.367 50C115.586 50 115.195 49.6094 115.195 48.8281V25.7617C115.195 25.1758 115.332 24.6419 115.605 24.1602L117.109 21.5234C117.396 21.0286 117.734 20.7812 118.125 20.7812H119.492C120.273 20.7812 120.664 21.1719 120.664 21.9531V48.8281C120.664 49.6094 120.273 50 119.492 50H116.367ZM124.883 39.7461C124.883 36.4518 125.703 33.8542 127.344 31.9531C128.997 30.0521 131.328 29.1016 134.336 29.1016C137.826 29.1016 140.417 30 142.109 31.7969C143.802 33.5938 144.648 36.4844 144.648 40.4688C144.648 41.25 144.284 41.6406 143.555 41.6406H130.664C130.872 43.8021 131.406 45.1628 132.266 45.7227C133.125 46.2826 134.121 46.5625 135.254 46.5625C136.335 46.5625 137.161 46.4193 137.734 46.1328C138.307 45.8464 138.789 45.4557 139.18 44.9609C139.622 44.388 140.169 44.2969 140.82 44.6875L142.773 45.8789C143.542 46.3477 143.652 46.9076 143.105 47.5586C142.311 48.5091 141.38 49.2188 140.312 49.6875C139.245 50.1562 137.559 50.3906 135.254 50.3906C131.517 50.3906 128.854 49.4401 127.266 47.5391C125.677 45.638 124.883 43.0404 124.883 39.7461ZM130.684 37.7344H139.18C139.18 36.3281 138.828 35.1823 138.125 34.2969C137.422 33.3984 136.302 32.9492 134.766 32.9492C133.542 32.9492 132.572 33.3789 131.855 34.2383C131.139 35.0846 130.749 36.25 130.684 37.7344ZM147.812 44.5312C147.812 41.9271 149.056 40.0391 151.543 38.8672C154.03 37.6953 156.868 37.0703 160.059 36.9922V36.2109C160.059 35.013 159.759 34.1667 159.16 33.6719C158.561 33.1771 157.728 32.9297 156.66 32.9297C155.905 32.9297 155.234 33.0404 154.648 33.2617C154.076 33.4701 153.574 33.7174 153.145 34.0039C152.728 34.2773 152.35 34.5573 152.012 34.8438C151.413 35.3646 150.918 35.3906 150.527 34.9219L148.906 32.9297C148.503 32.4349 148.6 31.9271 149.199 31.4062C149.655 31.0026 150.182 30.651 150.781 30.3516C151.393 30.0521 152.201 29.7721 153.203 29.5117C154.206 29.2383 155.508 29.1016 157.109 29.1016C159.818 29.1016 161.895 29.7266 163.34 30.9766C164.798 32.2266 165.527 34.069 165.527 36.5039V48.8281C165.527 49.6094 165.137 50 164.355 50H161.152C160.449 50 160.098 49.6094 160.098 48.8281V48.2422H160.059C159.29 48.9844 158.366 49.5312 157.285 49.8828C156.217 50.2214 155.234 50.3906 154.336 50.3906C152.201 50.3906 150.579 49.8698 149.473 48.8281C148.366 47.7734 147.812 46.3411 147.812 44.5312ZM153.594 44.4141C153.594 44.8698 153.685 45.2669 153.867 45.6055C154.049 45.931 154.336 46.1719 154.727 46.3281C155.117 46.4844 155.553 46.5625 156.035 46.5625C156.699 46.5625 157.344 46.4714 157.969 46.2891C158.594 46.1068 159.29 45.6771 160.059 45V40.7617C157.871 41.0091 156.406 41.3281 155.664 41.7188C154.922 42.1094 154.388 42.513 154.062 42.9297C153.75 43.3464 153.594 43.8411 153.594 44.4141ZM172.031 50C171.25 50 170.859 49.6094 170.859 48.8281V30.6641C170.859 29.8828 171.25 29.4922 172.031 29.4922H175.117C175.898 29.4922 176.289 29.8828 176.289 30.6641V32.2656H176.367C176.706 31.4323 177.272 30.6966 178.066 30.0586C178.861 29.4206 179.798 29.1016 180.879 29.1016C181.621 29.1016 182.233 29.1927 182.715 29.375C183.171 29.5443 183.346 29.8568 183.242 30.3125L182.695 32.6367C182.578 33.1576 182.227 33.3138 181.641 33.1055C181.302 32.9883 180.977 32.9297 180.664 32.9297C179.414 32.9297 178.379 33.6784 177.559 35.1758C176.738 36.6732 176.328 38.8542 176.328 41.7188V48.8281C176.328 49.6094 175.938 50 175.156 50H172.031ZM187.383 50C186.602 50 186.211 49.6094 186.211 48.8281V30.6641C186.211 29.8828 186.602 29.4922 187.383 29.4922H190.469C191.25 29.4922 191.641 29.8828 191.641 30.6641V31.7969H191.719C192.318 30.7682 193.079 30.0651 194.004 29.6875C194.928 29.2969 196.042 29.1016 197.344 29.1016C199.375 29.1016 201.055 29.7396 202.383 31.0156C203.711 32.2917 204.375 34.6224 204.375 38.0078V48.8281C204.375 49.6094 203.984 50 203.203 50H200.078C199.297 50 198.906 49.6094 198.906 48.8281V39.4141C198.906 36.5755 198.711 34.7852 198.32 34.043C197.93 33.3008 197.09 32.9297 195.801 32.9297C194.434 32.9297 193.405 33.4635 192.715 34.5312C192.025 35.5859 191.68 37.7865 191.68 41.1328V48.8281C191.68 49.6094 191.289 50 190.508 50H187.383Z" fill="#3829A4"></path>
+              </svg>
+            </a>
         </div>
+        <div class="container" style="">
+        <div class="signup">Sign Up</div>
+            <!-- Sign Up Form -->
+            <form method="POST" class="form">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
 
-        <!-- Email Field -->
-        <div class="mb-3">
-            <label for="id_email" class="form-label">Email</label>
-            <br>
-            {{ form.email }}
-            {% if form.email.errors %}
-                <div class="text-danger">
-                    {% for error in form.email.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
+                <!-- Username Field -->
+                <div class="mb-3">
+                    <label for="id_username" class="form-label">Username</label>
+                    <br>
+                    <div>{{ form.username }}</div>
+                    {% if form.username.errors %}
+                        <div class="text-danger">
+                            {% for error in form.username.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
-            {% endif %}
-        </div>
 
-        <!-- Password Field -->
-        <div class="mb-3">
-            <label for="id_password1" class="form-label">Password</label>
-            <br>
-            {{ form.password1 }}
-            {% if form.password1.errors %}
-                <div class="text-danger">
-                    {% for error in form.password1.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
+                <!-- Email Field -->
+                <div class="mb-3">
+                    <label for="id_email" class="form-label">Email</label>
+                    <br>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <div class="text-danger">
+                            {% for error in form.email.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
-            {% endif %}
-        </div>
 
-        <!-- Password Confirmation Field -->
-        <div class="mb-3">
-            <label for="id_password2" class="form-label">Confirm Password</label>
-            <br>
-            {{ form.password2 }}
-            {% if form.password2.errors %}
-                <div class="text-danger">
-                    {% for error in form.password2.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
+                <!-- Password Field -->
+                <div class="mb-3">
+                    <label for="id_password1" class="form-label">Password</label>
+                    <br>
+                    {{ form.password1 }}
+                    {% if form.password1.errors %}
+                        <div class="text-danger">
+                            {% for error in form.password1.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
-            {% endif %}
+
+                <!-- Password Confirmation Field -->
+                <div class="mb-3">
+                    <label for="id_password2" class="form-label">Confirm Password</label>
+                    <br>
+                    {{ form.password2 }}
+                    {% if form.password2.errors %}
+                        <div class="text-danger">
+                            {% for error in form.password2.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="button3">Create Account</button>
+            </form>
+
+            <!-- Redirect to Login -->
+            <div class="text" style="text-align: start;">
+                <div style="color: #281e72; display: block; width: 100%;">Already have an account?
+                <a href="{% url 'login' %}" class="text2" style="display: block;">Log in</a>
+                </div> 
+                
+            </div>
         </div>
-
-        <!-- Submit Button -->
-        <button type="submit" class="button3">Create Account</button>
-    </form>
-
-    <!-- Redirect to Login -->
-    <div class="text">
-        Already have an account? 
-        <a href="{% url 'login' %}" class="text2" style="margin-bottom: 50px;">Log in here.</a>
-    </div>
-</div>
-
-<style>
-    /* Existing styles from the frontend team */
-    body {
-        font-family: Arial;
-    }
-    .form{
-        width: 40%;
-    }
-    .form-label{
-        display: block;
-        margin-bottom: -15px;
-        margin-top: 20px;
-    }
-    /* .button1{
-        background-color: white;
-        width:  380px;
-        height: 50px;
-        border-radius: 10px;
-        color: rgb(125, 126, 127);
-        font-size: 18px;
-        border-color: rgb(56, 41, 164);
-        border-width: 2.7px;
-    } */
-    input{
-        width: 100%;
-        background-color: white;
-        height: 50px;
-        border-radius: 10px;
-        color: rgb(125, 126, 127);
-        font-size: 18px;
-        border-color: rgb(56, 41, 164);
-        border-width: 2.7px;
-    }
-    .button3 {
-        background-color: rgb(56, 41, 164);
-        width: 100%;
-        height: 50px;
-        border-radius: 10px;
-        color: white;
-        font-size: 18px;
-        margin-top: 20px;
-    }
-    .container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        /* height: 86vh; */
-    }
-    .signup {
-        width: 40%;
-        color: #4937D2;
-        padding-top: 40px;
-        font-size: 60px;
-        font-weight: bold;
-        margin-bottom: 3%;
-    }
-    .text {
-        margin-top: 3%;
-        font-size: 19.5px;
-        color: rgb(56, 41, 164);
-    }
-    .text2 {
-        font-size: 17px;
-        color: rgb(56, 41, 164);
-        padding-right: 140px;
-    }
-    .mb-3 {
-        width: 100%;
-        margin-bottom: 3%;
-    }
-    @media screen and (max-width: 400px) {
-        .form {
-            width: 80%;
-            margin-left: 2.5%;
-            margin-right: 2.5%;
-        }
-        .signup {
-            font-size: x-large;
-            width: 80%;
-            margin-bottom: 15%;
-        }
-        .button3 {
-            width: 95%;
-            font-size: x-small;
-        }
-        .text, .text2 {
-            font-size: small;
-        }
-    }
-</style>
-{% endblock %}
+    </body>
+</html>
