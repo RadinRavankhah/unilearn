@@ -9,6 +9,7 @@ from .forms import SignupForm, LoginForm, SubredditForm, PostForm, CommentForm, 
 from django.db.models import Count
 
 def home(request):
+    total_users = CustomUser.objects.count()
     if request.user.is_authenticated:
         # Subreddits the user follows, sorted by follower count
         followed_subreddits = request.user.followed_subreddits.annotate(follower_count=Count('followers')).order_by('-follower_count')
@@ -34,7 +35,7 @@ def home(request):
             for subreddit in top_subreddits
         ]
 
-    return render(request, 'home.html', {'subreddit_posts': subreddit_posts})
+    return render(request, 'home.html', {'subreddit_posts': subreddit_posts, "total_users":total_users})
 
 
 # User Management

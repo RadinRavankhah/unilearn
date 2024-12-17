@@ -1,0 +1,211 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #E9ECF5;
+    /*background-color: #f9f9f9;*/
+    color: #333;
+  }
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  .header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  .header .auth-buttons .btn {
+    padding: 8px 12px;
+    margin-left: 15px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  .header .auth-buttons .btn.primary {
+    background-color: #3829A4;
+    color: #fff;
+    border: none; 
+  }
+  /* Layout */
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /*margin: 20px;*/
+  }
+  .sidebar, .extra-content {
+    flex: 1 1 220px;
+    margin: 10px;
+    background-color: #E9ECF5;
+    padding: 20px;
+    /*border: 1px solid #ddd;*/
+    border-radius: 4px;
+  }
+  .sidebar ul, .extra-content ul {
+    list-style-type: none;
+    background-color: #E9ECF5;
+  }
+  .main-content {
+    flex: 3 1 300px;
+    margin: 10px;
+  }
+  .card {
+    background-color: #fff;
+    padding: 20px;
+    /*/border: 1px solid #ddd;*/
+    border-radius: 4px;
+    margin-bottom: 20px;
+    width: 80%;
+    /*width: 530px ;
+    height: 170px; ;*/
+  }
+  .card.pinned {
+    background-color: #fff;
+    /*border-left: 4px solid #007BFF;*/
+  }
+  /* Responsiveness */
+  .images{
+    margin-bottom: 5%;
+  }
+  .meme{
+    margin-bottom: 10%;   
+  }
+  .top-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background-color: rgb(233, 236, 245);
+  }
+  .site-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 1% ;
+    padding-top: 1%;
+    margin-bottom: 1%;  
+  }
+  .unilearn{
+    margin-top: 2%;
+  }
+  .log-in {
+    font-size: small;
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(56,41,164);
+    font-weight: 700;
+    padding: 10px;
+  }
+  .sign-up {
+    font-size: small;
+    border-radius: 5px;
+    background-color: rgb(56,41,164);
+    color: white;
+    font-weight: 700;
+    padding: 10px;
+  }
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-right: 2%;
+  }
+  .grat-hat{
+    height: 30px;
+  }
+  .side{
+    height: 100%;
+    display:inline-flex;
+  }
+ /* Responsive Design */
+  @media (max-width: 1024px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .header .auth-buttons {
+      margin-top: 10px;
+      justify-content: flex-start;
+    }
+    .container {
+      flex-direction: column;
+    }
+    .sidebar, .extra-content {
+      flex: 1 1 100%;
+      margin-bottom: 20px;
+    }
+    .main-content {
+      flex: 1 1 100%;
+    }
+    .card {
+      width: 85%;
+    }
+    .header{
+    width: 150%;
+    }
+  }
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    .sidebar, .extra-content {
+      flex: 1 1 100%;
+    }
+    .main-content {
+      flex: 1 1 100%;
+    }
+    .header{
+        width: 150%;
+    }
+    .card{
+      width: 85%;
+    }
+  }
+  @media screen and (max-width:600px){
+    .btn , .btn.primary{
+      width: 30%;
+      height: 5%;
+    }
+    .buttons{
+      margin-bottom: 10px; 
+      margin-top: 10px;
+    }
+    .site-name{
+        margin-left: 20px;
+      /* width: 40%; */
+    }
+    .grat-hat{
+      width: 30px;
+      height: 30px;
+      font-weight: bold;
+    }
+    .unilearn{
+      width: 100px;
+      height: 40px;
+    }
+    .person-icon{
+      width: 20px;
+      height: 20px;
+    }
+    /* .log-in , .sign-up{ */
+      /* width: 50%; */
+    /* } */
+    .font{
+      font-size: xx-small; 
+      font-weight: bold;
+    }      
+  }

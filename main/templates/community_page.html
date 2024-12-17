@@ -130,10 +130,7 @@
                         </div> -->
                     </div>
                 </div>
-            </div>            
-       
-        
-        
+            </div>
         <div class="news">
             {% if posts %}
             <div class="posts">
@@ -142,17 +139,18 @@
                     <div class="side-bar" style="min-height: 30px;">
                         <a href="{% url 'upvote_post_from_community' post.id %}">
                             {% if not request.user in post.upvotes.all or not user.is_authenticated %}
-                            <img alt="upvote" src="https://i.postimg.cc/pLL24SsW/up-arrow-empty.png" style="max-width: 30px; max-height: 30px; margin:5px;">
+                            <img alt="upvote" src="{% static 'images/up-arrow-empty.png' %}" style="max-width: 30px; max-height: 30px; margin:5px;">
                             {% else %}
-                            <img alt="unupvote" src="https://i.postimg.cc/QdYX3qzp/up-arrow-full.png" style="max-width: 30px; max-height: 30px; margin:5px;">
+                            <img alt="unupvote" src="{% static 'images/up-arrow-full.png' %}" style="max-width: 30px; max-height: 30px; margin:5px;">
                             {% endif %}
                         </a>
                         <div class="vote-count">{{post.vote_counts}}</div>
                         <a href="{% url 'downvote_post_from_community' post.id %}">
                             {% if not request.user in post.downvotes.all or not user.is_authenticated %}
-                            <img alt="downvote" src="https://i.postimg.cc/TY9dkxqN/down-arrow-empty.png"style="max-width: 30px; max-height: 30px; margin:5px;">
+                            <!-- <img alt="downvote" src="https://i.postimg.cc/TY9dkxqN/down-arrow-empty.png"style="max-width: 30px; max-height: 30px; margin:5px;"> -->
+                            <img alt="downvote" src="{% static 'images/down-arrow-empty.png' %}"style="max-width: 30px; max-height: 30px; margin:5px;">
                             {% else %}
-                            <img alt="undownvote" src="https://i.postimg.cc/HsHW4n57/down-arrow-full.png"style="max-width: 30px; max-height: 30px; margin:5px;">
+                            <img alt="undownvote" src="{% static 'images/down-arrow-full.png' %}"style="max-width: 30px; max-height: 30px; margin:5px;">
                             {% endif %}
                         </a>
                     </div>
