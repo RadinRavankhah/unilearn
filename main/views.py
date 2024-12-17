@@ -39,7 +39,7 @@ def home(request):
 
 # User Management
 def signup(request):
-    next_url = request.GET.get('next') or request.POST.get('next', 'home')  # Handle both GET and POST
+    next_url = request.GET.get('next') or request.POST.get('next') or 'home'  # Handle both GET and POST
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
