@@ -2,13 +2,87 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import CustomUser, Subreddit, Post, Comment
 from django.contrib.auth import authenticate
+from .models import CustomUser  # Import your custom user model
+
 
 
 # User Signup Form
 class SignupForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'password1', 'password2', 'bio', 'preferences']
+        fields = ['username', 'email', 'password1', 'password2']
+        widgets = {
+            'username': forms.TextInput(attrs={
+                'class': 'input-field',
+                'placeholder': 'Username',
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'input-field',
+                'placeholder': 'Email',
+            }),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(SignupForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].widget = forms.PasswordInput(attrs={
+            'class': 'input-field',
+            'placeholder': 'Password',
+        })
+        self.fields['password2'].widget = forms.PasswordInput(attrs={
+            'class': 'input-field',
+            'placeholder': 'Confirm Password',
+        })
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError("This email is already in use.")
+        return email
+
+
+
+
+
+
+
+
+# class SignupForm(UserCreationForm):
+#     class Meta:
+#         model = CustomUser
+#         fields = ['username', 'email', 'password1', 'password2']
+#         widgets = {
+#             'username': forms.TextInput(attrs={
+#                 'class': 'input-field',
+#                 'placeholder': 'Username',
+#             }),
+#             'email': forms.EmailInput(attrs={
+#                 'class': 'input-field',
+#                 'placeholder': 'Email',
+#             }),
+#             'password1': forms.PasswordInput(attrs={
+#                 'class': 'input-field',
+#                 'placeholder': 'Password',
+#             }),
+#             'password2': forms.PasswordInput(attrs={
+#                 'class': 'input-field',
+#                 'placeholder': 'Confirm Password',
+#             }),
+#         }
+
+#     def clean_email(self):
+#         email = self.cleaned_data.get('email')
+#         if CustomUser.objects.filter(email=email).exists():
+#             raise forms.ValidationError("This email is already in use.")
+#         return email
+
+
+
+
+
+# class SignupForm(UserCreationForm):
+#     class Meta:
+#         model = CustomUser
+#         fields = ['username', 'email', 'password1', 'password2', 'bio', 'preferences']
 
 # User Login Form
 # class LoginForm(AuthenticationForm):
