@@ -20,6 +20,7 @@
         </div></a>
 
         <div class="buttons" style="margin-top: 20px;">
+            <a href="{% url 'subreddit_list' %}"><button class="sign-up"><span class="font">Communities</span></button></a>
             {% if not user.is_authenticated %}
             <a href="{% url 'login' %}"><button class="log-in"><span class="font">Log-In</span></button></a>
             <a href="{% url 'signup' %}"><button class="sign-up"><span class="font">Sign-Up</span></button></a>
