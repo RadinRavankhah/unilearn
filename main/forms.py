@@ -137,7 +137,7 @@ class CommentForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'last_name', 'bio', 'phone_number']
+        fields = ['first_name', 'last_name', 'bio', 'phone_number','github','website','twitter','linkedin','instagram','profile_picture']
         widgets = {
             'first_name': forms.TextInput(attrs={
                 'class': 'form-control custom-firstname',
@@ -156,6 +156,26 @@ class UserProfileForm(forms.ModelForm):
                 'placeholder': 'Enter your phone number',
                 'type': 'tel',  # Optional: Use 'tel' type for phone inputs
                 'pattern': r'\+?[0-9]{10,15}',  # Optional: Regular expression for validation
+            }),
+            'github': forms.URLInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your Github URL',
+            }),
+            'website': forms.URLInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your Website URL',
+            }),
+            'twitter': forms.URLInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your Twitter URL',
+            }),
+            'linkedin': forms.URLInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your LinkedIn URL',
+            }),
+            'instagram': forms.URLInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your Instagram URL',
             }),
             # 'address': forms.TextInput(attrs={
             #     'class': 'form-control custom-address',

@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -81,12 +83,14 @@
                 justify-content: start;
                 gap: 2%;
                 align-items: center;
-                margin-bottom: 5px;   
+                margin-bottom: 8px;  
+                /* margin-top: 5px; */
+                padding-top: 8px; 
                 border-top: dashed 2px #1D1560;   
             }
             .social-media{
-                opacity: 20%;
-                filter: grayscale(100%);
+                /* opacity: 20%;
+                filter: grayscale(100%); */
                 margin-left: 5%;
                 width: 95%;
                 display: flex;
@@ -430,8 +434,9 @@
                 </div>
     
                 <div class="social-media">
+                    {% if user.linkedin %}
                     <div style="border-top: none;" class="media">
-                        <svg  width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <!-- <svg  width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <rect width="32" height="32" fill="url(#pattern0_161_895)"/>
                             <defs>
                             <pattern id="pattern0_161_895" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -439,31 +444,41 @@
                             </pattern>
                             <image id="image0_161_895" width="48" height="48" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAABN1JREFUaAXVma+rVUEQx7/BYDAY/AMMBoPBaDAYDEaDwWAwGA0Gg9FgEBQ0CBoEDUaDoEFQ0CAoKChoEBQUFBQMBoPBoO9zufPY872zZ/eed0XfwGH3njs/vjuzOzu7R9o47ZZ0TNIlSXclvZT0QdJPSb/nD33e8R888CKD7D+h/ZKuSvpUgAywy7boQBc6/yptkXRc0usVgK4NEt3YwNZK6cA8/DXDq37PVMPmhglPXJD0q+F1/n/f4CkHCW+PTmxPjsY2SQ9GQP2QdE3SIUnw0i9B0r8j6V7yHl5kkKWPLpeN32CAdylC4HlF6TdJJ03p3sSjb+c86KIfgGjxPjJB8KAT3SVf9J+avZBLW0L2qKIIb21PpPB0GIt2X8FHP95Hi4wTurNIIkMkuqbTxcQYHiNvZ7Qn4b+ZMPIuwEeLbEbYytYI2EaJlR/Ko2V+juVo9xib1s7Eyq4EFLI1wqavDQZVzU6EJ8vxR2oWJG1NjGTeDxW3zEEAREeNjho/TiXFplOJDSS8Hu3lmub5+8OJTDn3XTxbC+gYIzAEnmjBukDu/S8dK989Sn5vke8X6BgjFjZYAjwtWAfEfCsZ6J8acOQ/XPG5nG3w9rzZQkeLwOL4BpG+bgzk47G5icEs+1QXWIEwSxStqhQsvkcMEoB7cvBnYbzsnrBBk31ag0YeHk+RtRRd2nMnU8XOiNF7eA7GnyPtFZN7McLrf8Fb2mwlC+QpO0oZ+rPITfXkfVPYE7UYiG9q6GoRkSsPSQxgFjlPU72e9GzSs+gD5GkbfE/2QjaNnHuSudZDHk42nV7KNqgeWY8cla5emTfOdmjaYTIMpicDheosE2VFYvBHC7bScWDXR3tJwcROx3NmjQEh8vuN4smqVbICB/eeJztLo7O0gU1sgyHweKEJ9sGIytFthj611KYeAE7e/APw3MqoCA3zi+fJ2gJ9PH/IAjy3k4GTjn3OxtyNNtaUp25sojP0hz1sB44azoVFjLEWcWDxNcKBpZey3T87BLk+33Rni/h/SaOk5haladSvPXo3Mi/Ixk5uDgzeMoLo6qF0I/P5OLWUoDzoJdZCOYANlRIURKWy3rLYS5BlijkvjTdUzGULqqecnho5ouTrDl0tqpbTCH62KPR40zMC83jqgaYn83nUwLxOAC6n0fcOMFnkegq6rJCbHUzW0Sx2cMzokXLqof6rDZwDe4u8IENHi5qHehS8MTCck1u3wn6t8q6FRBI8ZbSnXKuAdYGYh6Vi+q3FtezFVhbp1sWWn73Bla4Zrus8O8A8tkERIb+/HPOoR2zK1eLsELPg/vkLFpjvsBjBczXyBIB8Vhdll7t4t0bYdOegewzLTJcvMqKAYO3uhg8V8JQPW76TlwHw167XmSLuSPjB1iSm0kMDFOD4HJqdXVsfOLK5X/vAgY2wV7bs1umtdDYi5vaziiLycc8nJrINeng88+Bd/8REqvRcHwPgXICepQiBWiRQzPzEW2Mf+fgqzxNAomXdoB9ZdPhcDz5aMCwNPkZKyJh32XwsjdB3L/v/5e8eXmxiu3vaBOisJTtlKbYEtco+tprZJgM69g5PkB18x14lcHSnm9QYsCn/4R3msVexUwaDDnQNPlhMATVVhkqSPYKyg+Mp4eewXd4i0Ocd/8EDLzKtKrSJ6Q/S70BN8TUapQAAAABJRU5ErkJggg=="/>
                             </defs>
-                        </svg>
+                        </svg> -->
+                        <img src="{% static 'images/linkedinIcon.png' %}" alt="linkedin Icon Image" width="32px" height="32px">
                         <a style="color: #646566; display: inline;" href="https://bootdey.com">https://bootdey.com</a>                        
                     </div>
-    
+                    {% endif %}
+
+                    
+                    {% if user.github%}
                     <div class="media">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.25 24.75C6 26.625 6 21.625 3.5 21M21 28.5V23.6625C21.0469 23.0665 20.9664 22.4673 20.7638 21.9048C20.5612 21.3423 20.2412 20.8293 19.825 20.4C23.75 19.9625 27.875 18.475 27.875 11.65C27.8747 9.90483 27.2034 8.22654 26 6.96254C26.5698 5.43568 26.5295 3.74798 25.8875 2.25004C25.8875 2.25004 24.4125 1.81254 21 4.10004C18.135 3.32357 15.115 3.32357 12.25 4.10004C8.8375 1.81254 7.3625 2.25004 7.3625 2.25004C6.72047 3.74798 6.68018 5.43568 7.25 6.96254C6.03766 8.23592 5.36565 9.92937 5.375 11.6875C5.375 18.4625 9.5 19.95 13.425 20.4375C13.0137 20.8625 12.6966 21.3693 12.4941 21.9249C12.2917 22.4806 12.2085 23.0726 12.25 23.6625V28.5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>                            
+                        </svg> -->
+                        <img src="{% static 'images/githubIcon.png' %}" alt="githb Icon Image" width="32px" height="32px">
                         <p style="color: #646566;">bootdey</p>                       
                     </div>
+                    {% endif %}
     
+                    {% if user.twitter%}
                     <div class="media">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="icons8-x 1">
                             <path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M25.3333 28H6.66667C5.194 28 4 26.806 4 25.3333V6.66667C4 5.194 5.194 4 6.66667 4H25.3333C26.806 4 28 5.194 28 6.66667V25.3333C28 26.806 26.806 28 25.3333 28Z" fill="#212121"/>
                             <path id="Vector_2" fill-rule="evenodd" clip-rule="evenodd" d="M22.8384 22.6666H18.5471L9.21973 9.33325H13.5111L22.8384 22.6666ZM19.0584 21.5359H20.7671L12.9997 10.4639H11.2911L19.0584 21.5359Z" fill="white"/>
                             <path id="Vector_3" fill-rule="evenodd" clip-rule="evenodd" d="M10.5778 22.6666L15.3798 17.1039L14.7518 16.2712L9.21582 22.6666H10.5778Z" fill="white"/>
                             <path id="Vector_4" fill-rule="evenodd" clip-rule="evenodd" d="M16.2998 14.4806L16.9031 15.3399L22.0905 9.33325H20.7571L16.2998 14.4806Z" fill="white"/>
                             </g>
-                        </svg>
+                        </svg> -->
+                        <img src="{% static 'images/twitterIcon.png' %}" alt="twitter Icon Image" width="32px" height="32px">
                       <p style="color: #646566;">@bootdey</p>                       
                     </div>
-    
+                    {% endif %}
+                    
+                    {% if user.instagram%}
                     <div class="media">
-                        <svg class="social-media-logo" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- <svg class="social-media-logo" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M22.2028 32H9.79717C4.39487 32 0 27.6051 0 22.2028V9.79717C0 4.39487 4.39487 0 9.79717 0H22.2028C27.6051 0 32 4.39487 32 9.79717V22.2028C32.0004 27.6051 27.6055 32 22.2028 32ZM9.79717 2.39622C5.71636 2.39622 2.39622 5.71636 2.39622 9.79717V22.2028C2.39622 26.2836 5.71636 29.6038 9.79717 29.6038H22.2028C26.284 29.6038 29.6042 26.2836 29.6042 22.2028V9.79717C29.6042 5.71636 26.284 2.39622 22.2028 2.39622H9.79717Z" fill="url(#paint0_radial_161_907)"/>
                             <path d="M16.0006 24.0952C11.5371 24.0952 7.90625 20.4639 7.90625 16.0005C7.90625 11.5371 11.5371 7.90576 16.0006 7.90576C20.464 7.90576 24.0953 11.5371 24.0953 16.0005C24.0953 20.4639 20.464 24.0952 16.0006 24.0952ZM16.0006 10.3593C12.8902 10.3593 10.3598 12.8897 10.3598 16.0005C10.3598 19.1108 12.8902 21.6412 16.0006 21.6412C19.1109 21.6412 21.6413 19.1108 21.6413 16.0005C21.6413 12.8901 19.1109 10.3593 16.0006 10.3593Z" fill="url(#paint1_radial_161_907)"/>
                             <path d="M27.0822 7.02448C27.0822 8.18853 26.1387 9.13198 24.9747 9.13198C23.8106 9.13198 22.8672 8.18853 22.8672 7.02448C22.8672 5.86044 23.8106 4.91699 24.9747 4.91699C26.1387 4.91699 27.0822 5.86044 27.0822 7.02448Z" fill="url(#paint2_radial_161_907)"/>
@@ -490,18 +505,23 @@
                             <stop offset="1" stop-color="#0028FF"/>
                             </radialGradient>
                             </defs>
-                        </svg>                            
-                        <p style="color: #646566;">bootdey</p>                       
+                        </svg>      -->
+                        <img src="{% static 'images/instagramIcon.png' %}" alt="instagram Icon Image" width="32px" height="32px">                       
+                        <p style="color: #646566;">{{user.instagram}}</p>                       
                     </div>
-    
+                    {% endif %}
+
+                    {% if user.website %}
                     <div class="media">
-                        <svg class="social-media-logo" width="32" height="32" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- <svg class="social-media-logo" width="32" height="32" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M32 16.4625C32 7.39174 24.8364 0.0385742 16 0.0385742C7.16359 0.0385742 0 7.39174 0 16.4625C0 25.5328 7.16359 32.8859 16 32.8859C16.0458 32.8859 16.0911 32.8827 16.137 32.8827V21.425H12.2846V16.8452H16.137V13.4683C16.137 9.54908 18.4689 7.41483 21.8743 7.41483C23.5062 7.41483 24.9085 7.53964 25.3171 7.59518V11.6912L22.9546 11.6922C21.1023 11.6922 20.7441 12.5956 20.7441 13.9213V16.8451H25.1616L24.5864 21.4249H20.7441V32.1518C27.264 30.0768 32 23.8374 32 16.4625Z" fill="#395398"/>
                             <path d="M24.587 21.4251L25.1622 16.8453H20.7447V13.9215C20.7447 12.5957 21.1031 11.6924 22.9551 11.6924L25.3177 11.6914V7.59539C24.909 7.53985 23.5067 7.41504 21.8749 7.41504C18.4694 7.41504 16.1375 9.54914 16.1375 13.4685V16.8455H12.2852V21.4252H16.1375V32.8829C17.7403 32.8689 19.2873 32.6156 20.7445 32.1522V21.4252H24.587V21.4251Z" fill="white"/>
-                        </svg>                           
-                        <p style="color: #646566;">bootdey</p>                       
+                        </svg>                            -->
+                        
+                        <img src="{% static 'images/websiteIcon.png' %}" alt="website Icon Image" width="32px" height="32px">                       
+                        <p style="color: #646566;">{{ user.website }}</p>   
                     </div>
-    
+                    {% endif %}
                 </div>
             </div>
 
@@ -521,34 +541,17 @@
                     <label class="label-style">{{user.phone_number}}</label><br><br>
                 </div>
 
-                <!-- <div class="each-info">
-                    <label class="label-style" for="Mobile" >Mobile:</label>
-                    <input class="input-boxes" id="Mobile" type="text" ><br><br>
-                </div> -->
-
-                <!-- <div class="each-info">
-                    <label class="label-style" for="address">Address:</label>
-                    <input class="input-boxes" id="address" type="text" ><br><br>
-                </div> -->
-
                 <label class="label-descript" for="descriptions" >Description:<br></label>
                 <label class="label-descript">{{user.bio}}</label>
 
                 {% if user == request.user %}
-                <!-- <a href="{% url 'edit_profile' user.username %}" class=""> -->
                 <div class="submit">
                     <form action="{% url 'edit_profile' user.username %}">
                     <button class="Save-button" style="padding: 10px;"><b>Edit Personal Info</b></button>
                     </form>
                 </div>
-            <!-- </a> -->
                 {% endif %}
             </div>
-            
-            <!-- <div class="submit">
-                <button class="Save-button"><b>Save Changes</b></button>
-            </div> -->
-            
         </div>       
     </body>
 </html>
