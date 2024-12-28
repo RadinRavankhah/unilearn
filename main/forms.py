@@ -140,7 +140,7 @@ class UserProfileForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'bio', 'phone_number','github','website','twitter','linkedin','instagram','profile_picture']
         widgets = {
             'first_name': forms.TextInput(attrs={
-                'class': 'form-control custom-firstname',
+                'class': 'form-control custom-firstname input-boxes',
                 'placeholder': 'Enter your first name',
             }),
             'last_name': forms.TextInput(attrs={

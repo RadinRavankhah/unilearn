@@ -16,8 +16,12 @@ class CustomUser(AbstractUser):
     # favorite_topics = models.CharField(max_length=1000, blank=True, null=True) # Favorite topics
     # preferences = models.JSONField(default=dict, blank=True)  # To store topic preferences as a JSON object
 
-    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
-
+    profile_picture = models.ImageField(
+        upload_to='profile_pictures/', 
+        blank=True, 
+        null=True, 
+        default='profile_pictures/default_profile_picture.png'
+    )
     website = models.URLField(max_length=200, blank=True, null=True)
     github = models.URLField(max_length=200, blank=True, null=True)
     twitter = models.URLField(max_length=200, blank=True, null=True)

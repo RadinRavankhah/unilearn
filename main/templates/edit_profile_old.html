@@ -1,0 +1,32 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Edit Profile</h1>
+
+    <!-- Display any error messages from the form -->
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        <ul>
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <!-- The form to edit the user profile -->
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+
+    <!-- Back to user profile -->
+    <a href="{% url 'user_profile' username=user.username %}" class="btn btn-secondary mt-3">Back to Profile</a>
+  </div>
+{% endblock %}
