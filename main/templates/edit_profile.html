@@ -196,7 +196,7 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                justify-content: space-between;
+                /* justify-content: space-between; */
                 /* margin-left: 4%; */
                
             }
@@ -279,6 +279,11 @@
                 display: none;
             }
             @media screen and (max-width:700px){
+                /* #profile_picture-clear_id{
+                position: absolute;
+                margin-top: 80px;
+                margin-left: 50px;
+                } */
                 .site-name{
                     width: 40%;
                 }
@@ -319,14 +324,17 @@
                 .label-descript{
                     font-size: large;
                 }
-                .input-boxes{
+                /* .input-boxes{
                     width: 90%;
-                }
+                } */
                 .input-descript{
                     height: 20%;
                 }
             }
             @media screen and (max-width:400px){
+                .Save-button{
+                    margin-right: 20px;
+                }
 
                 .top-section{
                     display: none;
@@ -501,7 +509,19 @@
                         </div>
                     </div>
                     <button type="submit" class="Save-button btn btn-primary" style="padding: 10px; margin-left: 75%;"><b>Save Changes</b></button>
-                </form>      
+                </form>
+                <script>
+                    // Wait for the DOM to load
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Select the file input's associated anchor element
+                        const fileLink = document.querySelector('a[href*="profile_pictures/"]'); // Adjust the selector based on your actual structure
+                        
+                        if (fileLink) {
+                            // Change the text of the link
+                            fileLink.textContent = 'Download';
+                        }
+                    });
+                </script>
             </div>
         </div>       
     </body>
