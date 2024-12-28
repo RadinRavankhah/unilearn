@@ -1,0 +1,57 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}{{ user.username }}'s Profile{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>{{ user.username }}'s Profile</h2>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Joined on:</strong> {{ user.date_joined }}</p>
+    <p><strong>Last online:</strong> {{ user.last_online }}</p>
+
+    <hr>
+
+    <!-- User Bio -->
+    <div>
+      <h4>Bio:</h4>
+      {% if user.bio %}
+        <p>{{ user.bio }}</p>
+      {% else %}
+        <p>No bio available.</p>
+      {% endif %}
+    </div>
+
+    <hr>
+
+    <!-- User Karma -->
+    <div>
+      <h4>Karma:</h4>
+      <p>{{ user.karma }} points</p>
+    </div>
+
+    <hr>
+
+    <!-- User Followed Subreddits -->
+    <div>
+      <h4>Followed Subreddits:</h4>
+      {% if user.followed_subreddits.all %}
+        <ul class="list-group">
+          {% for subreddit in user.followed_subreddits.all %}
+            <li class="list-group-item">
+              <a href="{% url 'subreddit_detail' subreddit.name %}">{{ subreddit.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>You are not following any subreddits yet.</p>
+      {% endif %}
+    </div>
+
+    <hr>
+
+    <!-- Edit Profile Button -->
+    {% if user == request.user %}
+      <p><a href="{% url 'edit_profile' user.username %}" class="btn btn-secondary">Edit Profile</a></p>
+    {% endif %}
+  </div>
+{% endblock %}

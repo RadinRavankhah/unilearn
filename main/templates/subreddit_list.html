@@ -141,31 +141,17 @@
     <!-- Subreddit List -->
     {% if subreddits %}
     <div class="differentCommunities" style="width: 90%; margin-left: 5%; margin-right: 2.5%; margin-top: 3%;">
-        <!-- <ul class="list-group"> -->
         {% for subreddit in subreddits %}
-        <a href="{% url 'subreddit_detail' subreddit.name %}">
+        <a href="{% url 'subreddit_detail' subreddit.name %}" style="text-decoration: none;">
             <div class="firstCommunity" style="display: flex; flex-direction: row;">
                 <div class="texts" style="margin: 2%;">
                     <h4 class="titleOfCommunity">{{ subreddit.name }}</h4>
-                    <p class="shortDes">{{subreddit.description}}</p>
-                    <!-- <p class="timeOfCreation"><time datetime="" class="date"></time></p> -->
-                    <p class="timeOfCreation">{{subreddit.created_at}}</p>
-                    <small>Created by {{ subreddit.creator.username }} on {{ subreddit.date_created }}</small>
+                    <p class="timeOfCreation">{{subreddit.description}}</p>
+                    <small>Created by {{ subreddit.created_by.username }} on {{ subreddit.created_at }}</small>
                 </div>    
             </div>
         </a>
         {% endfor %}
-        <!-- </ul> -->
-        
-            
-            <div class="firstCommunity" style="display: flex; flex-direction: row;">
-                <div class="texts" style="margin: 2%;">
-                    <h4 class="titleOfCommunity">python community</h4>
-                    <p class="shortDes">main community for python developers</p>
-                    <p class="timeOfCreation"><time datetime="" class="date"></time></p>
-
-                </div>    
-            </div>
     </div>
     {% else %}
         <p>No subreddits available yet.</p>
