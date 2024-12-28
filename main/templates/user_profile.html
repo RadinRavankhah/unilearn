@@ -54,8 +54,8 @@
                 
             }
             .right-box{
-                filter: grayscale(100%);
-                opacity: 20%;
+                /* filter: grayscale(100%); */
+                /* opacity: 20%; */
                 background-color: white;
                 width: 50%;
                 display: flex;
@@ -208,7 +208,7 @@
             .label-style{
                 color: #261C77;
                 font-size: larger;
-                width: 13%;
+                width: 20%;
                 font-weight: 600;
             }
             .label-descript{
@@ -504,39 +504,51 @@
     
                 </div>
             </div>
+
             <div class="right-box">
                 <div class="each-info">
                     <label class="label-style" for="Fname" >Full Name:</label>
-                    <input class="input-boxes" id="FName" type="text" ><br><br>
+                    <label class="label-style">{{user.first_name}} {{user.last_name}}</label><br><br>
                 </div>
 
                 <div class="each-info">
                     <label class="label-style" for="email">Email:</label>
-                    <input class="input-boxes" id="email" type="email" ><br><br>
+                    <label class="label-style">{{user.email}}</label><br><br>
                 </div>
 
                 <div class="each-info">
                     <label class="label-style" for="phone">Phone:</label>
-                    <input class="input-boxes" id="phone" type="text" ><br><br>
+                    <label class="label-style">{{user.phone_number}}</label><br><br>
                 </div>
 
-                <div class="each-info">
+                <!-- <div class="each-info">
                     <label class="label-style" for="Mobile" >Mobile:</label>
                     <input class="input-boxes" id="Mobile" type="text" ><br><br>
-                </div>
+                </div> -->
 
-                <div class="each-info">
+                <!-- <div class="each-info">
                     <label class="label-style" for="address">Address:</label>
                     <input class="input-boxes" id="address" type="text" ><br><br>
-                </div>
+                </div> -->
 
-                <label class="label-descript" for="descriptions" >Add Description:<br></label>
-                <input class="input-descript" id="descriptions" type="text" >
+                <label class="label-descript" for="descriptions" >Description:<br></label>
+                <label class="label-descript">{{user.bio}}</label>
 
+                {% if user == request.user %}
+                <!-- <a href="{% url 'edit_profile' user.username %}" class=""> -->
                 <div class="submit">
-                    <button class="Save-button"><b>Save Changes</b></button>
+                    <form action="{% url 'edit_profile' user.username %}">
+                    <button class="Save-button" style="padding: 10px;"><b>Edit Personal Info</b></button>
+                    </form>
                 </div>
+            <!-- </a> -->
+                {% endif %}
             </div>
+            
+            <!-- <div class="submit">
+                <button class="Save-button"><b>Save Changes</b></button>
+            </div> -->
+            
         </div>       
     </body>
 </html>

@@ -4,12 +4,17 @@ from django.db import models
 class CustomUser(AbstractUser):
     # Username, email, password are inherited from AbstractUser
     email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=30, blank=True, null=True, default=" ___/")
+    last_name = models.CharField(max_length=30, blank=True, null=True, default="___ ")
+    phone_number = models.CharField(max_length=30, blank=True, null=True)
+    # address = models.CharField(max_length=100, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     karma = models.IntegerField(default=0)  # Tracks user's overall karma
     date_joined = models.DateTimeField(auto_now_add=True)  # When the user created the account
     last_online = models.DateTimeField(null=True, blank=True)  # Last time the user was online
     followed_subreddits = models.ManyToManyField('Subreddit', related_name='followers', blank=True)
-    preferences = models.JSONField(default=dict, blank=True)  # To store topic preferences as a JSON object
+    # favorite_topics = models.CharField(max_length=1000, blank=True, null=True) # Favorite topics
+    # preferences = models.JSONField(default=dict, blank=True)  # To store topic preferences as a JSON object
 
     def __str__(self):
         return self.username

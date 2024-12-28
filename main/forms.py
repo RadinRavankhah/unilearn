@@ -137,4 +137,32 @@ class CommentForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['bio', 'preferences']
+        fields = ['first_name', 'last_name', 'bio', 'phone_number']
+        widgets = {
+            'first_name': forms.TextInput(attrs={
+                'class': 'form-control custom-firstname',
+                'placeholder': 'Enter your first name',
+            }),
+            'last_name': forms.TextInput(attrs={
+                'class': 'form-control custom-lastname',
+                'placeholder': 'Enter your last name',
+            }),
+            'bio': forms.TextInput(attrs={
+                'class': 'form-control custom-bio',
+                'placeholder': 'Enter your bio',
+            }),
+            'phone_number': forms.TextInput(attrs={
+                'class': 'form-control custom-phone-number',
+                'placeholder': 'Enter your phone number',
+                'type': 'tel',  # Optional: Use 'tel' type for phone inputs
+                'pattern': r'\+?[0-9]{10,15}',  # Optional: Regular expression for validation
+            }),
+            # 'address': forms.TextInput(attrs={
+            #     'class': 'form-control custom-address',
+            #     'placeholder': 'Enter your address',
+            # }),
+            'profile_picture': forms.ClearableFileInput(attrs={
+                'class': 'form-control-file custom-profile-picture',
+            }),
+        }
+
