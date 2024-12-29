@@ -4,11 +4,13 @@ from django.db import models
 class CustomUser(AbstractUser):
     # Username, email, password are inherited from AbstractUser
     email = models.EmailField(unique=True)
-    first_name = models.CharField(max_length=30, blank=True, null=True, default=" ___/")
-    last_name = models.CharField(max_length=30, blank=True, null=True, default="___ ")
+    full_name = models.CharField(max_length=100, blank=True, null=True)
+    # first_name = models.CharField(max_length=30, blank=True, null=True, default=" ___/")
+    # last_name = models.CharField(max_length=30, blank=True, null=True, default="___ ")
     phone_number = models.CharField(max_length=30, blank=True, null=True)
-    # address = models.CharField(max_length=100, blank=True, null=True)
-    bio = models.TextField(blank=True, null=True)
+    mobile = models.CharField(max_length=30, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     karma = models.IntegerField(default=0)  # Tracks user's overall karma
     date_joined = models.DateTimeField(auto_now_add=True)  # When the user created the account
     last_online = models.DateTimeField(null=True, blank=True)  # Last time the user was online
@@ -22,12 +24,13 @@ class CustomUser(AbstractUser):
         null=True, 
         default='profile_pictures/default_profile_picture.png'
     )
-    website = models.URLField(max_length=200, blank=True, null=True)
-    github = models.URLField(max_length=200, blank=True, null=True)
-    twitter = models.URLField(max_length=200, blank=True, null=True)
-    linkedin = models.URLField(max_length=200, blank=True, null=True)
-    instagram = models.URLField(max_length=200, blank=True, null=True)
-
+    website = models.URLField(max_length=200, blank=True, null=True, default='http://website.com')
+    github = models.URLField(max_length=200, blank=True, null=True, default='http://github.com')
+    twitter = models.URLField(max_length=200, blank=True, null=True, default='http://x.com')
+    linkedin = models.URLField(max_length=200, blank=True, null=True, default='http://linkedin.com')
+    instagram = models.URLField(max_length=200, blank=True, null=True, default='http://instagram.com')
+    facebook = models.URLField(max_length=200, blank=True, null=True, default='http://facebook.com')
+    
 
 
     def __str__(self):
