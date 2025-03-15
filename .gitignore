@@ -3,3 +3,5 @@
 /testing stuff
 /venv
 /venv2
+main/__pycache__/models.cpython-312.pyc
+*.pyc
