@@ -3,7 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import CustomUser, Subreddit, Post, Comment
-from .forms import SignupForm, LoginForm, SubredditForm, PostForm, CommentForm, UserProfileForm
+from .forms import SignupForm, LoginForm, SubredditForm, PostForm, CommentForm
 
 # Home Page
 from django.db.models import Count
@@ -85,19 +85,38 @@ def user_profile(request, username):
     posts = Post.objects.filter(author=user)
     return render(request, 'templates/user_profile.html', {'user': user, 'posts': posts})
 
+# @login_required
+# def edit_profile(request, username):
+#     user = get_object_or_404(CustomUser, username=username)
+#     if request.user != user:
+#         return redirect('home')
+#     if request.method == 'POST':
+#         form = UserProfileForm(request.POST, request.FILES, instance=user)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('user_profile', username=user.username)
+#     else:
+#         form = UserProfileForm(instance=user)
+#     return render(request, 'templates/edit_profile.html', {'form': form})
+
+
 @login_required
 def edit_profile(request, username):
     user = get_object_or_404(CustomUser, username=username)
     if request.user != user:
         return redirect('home')
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, request.FILES, instance=user)
-        if form.is_valid():
-            form.save()
-            return redirect('user_profile', username=user.username)
-    else:
-        form = UserProfileForm(instance=user)
-    return render(request, 'templates/edit_profile.html', {'form': form})
+    if request.method == 'POST':    
+        user.full_name = request.POST.get('fullname')
+        user.email = request.POST.get('email')
+        user.phone_number = request.POST.get('phone')
+        user.mobile = request.POST.get('mobile')
+        user.address = request.POST.get('address')
+        user.description = request.POST.get('description')
+        user.save()
+        return redirect('user_profile', username=user.username)
+    return render(request, 'templates/edit_profile.html', {'user': user})
+
+
 
 # Subreddits
 def subreddit_list(request):
